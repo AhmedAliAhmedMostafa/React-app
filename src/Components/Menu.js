@@ -23,7 +23,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
         {
             return(
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <MenuItem dish={dish} onClick={props.onClick}/>
+                    <MenuItem dish={dish} />
               </div>
             );
         }) ;

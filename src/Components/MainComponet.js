@@ -1,31 +1,31 @@
 import React,{Component} from 'react';
+import Home from './HomeComponent';
 import Header from'./Header';
 import {DISHES} from '../shared/dishes';
 import Menu from './Menu';
 import Dishdetail from './DishdetailComponent';
 import Footer from './FooterComponent';
-
+import {Switch,Route,Redirect} from 'react-router-dom';
 
 class Main extends Component{
   constructor (props)
   {
     super(props);
     this.state={
-      dishes:DISHES,
-      selectedDish:null
+      dishes:DISHES
     }
   }
-  onDishSelect (dish)
-  {
-       this.setState({selectedDish:dish});
-  }
+
   render()
   {
     return (
       <div className="App">
         <Header />
-        <Menu dishes={this.state.dishes} onClick={dish=>{this.onDishSelect(dish);}}/>
-        <Dishdetail selectedDish={this.state.selectedDish} />
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes} />}/>
+          <Redirect to="/home"/>
+        </Switch>
         <Footer />
       </div>
     );
